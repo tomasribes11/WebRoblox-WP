@@ -44,12 +44,13 @@ services:
       - wp_mysql_data:/var/lib/mysql
       - ./docker/mysql/my.cnf:/etc/mysql/conf.d/custom.cnf:ro
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost",
-             "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+      # CMD-SHELL expande variables del contenedor; verifica que wpuser puede conectarse
+      # (no solo que MySQL responde TCP, sino que la inicialización está completa)
+      test: ["CMD-SHELL", "mysql -u$MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE -e 'SELECT 1' 2>/dev/null"]
       interval: 5s
       timeout: 5s
-      retries: 10
-      start_period: 30s
+      retries: 20
+      start_period: 40s
     networks:
       - webroblox_wp_net
     restart: unless-stopped
@@ -57,6 +58,7 @@ services:
   # ─── WP-CLI — Setup one-shot (solo con `make setup` o `--profile setup`) ─
   wp-cli:
     image: wordpress:cli-php8.2
+    user: root
     env_file:
       - .env
     volumes:
