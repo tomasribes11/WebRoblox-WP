@@ -1,0 +1,42 @@
+{
+  "name": "Mundo Roblox WordPress",
+  "description": "Sitio WordPress multiidioma sobre Roblox con Docker",
+  "type": "wordpress",
+  "docker": {
+    "enabled": true,
+    "composeFile": "docker-compose.yml",
+    "services": ["nginx", "php-fpm", "mysql"],
+    "ports": {
+      "nginx": 8080,
+      "mysql": 3307
+    }
+  },
+  "development": {
+    "primaryCommands": [
+      "make setup",
+      "make up", 
+      "make down"
+    ],
+    "siteUrl": "http://localhost:8080",
+    "adminUrl": "http://localhost:8080/wp-admin"
+  },
+  "workspace": {
+    "directories": {
+      "theme": "wp-content/themes/webroblox",
+      "docker": "docker",
+      "scripts": "scripts"
+    },
+    "fileTypes": {
+      "php": ["*.php"],
+      "css": ["*.css"],
+      "js": ["*.js"],
+      "docker": ["Dockerfile", "*.yml", "*.yaml"]
+    }
+  },
+  "features": {
+    "multiLanguage": true,
+    "languages": ["es", "en", "fr"],
+    "plugins": ["polylang"],
+    "theme": "webroblox"
+  }
+}
