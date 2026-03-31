@@ -1,0 +1,29 @@
+# Environment
+.env
+
+# WordPress core (gestionado por la imagen Docker — solo rastreamos el tema)
+wp-content/uploads/
+wp-content/plugins/
+wp-content/upgrade/
+wp-content/languages/
+wp-content/advanced-cache.php
+wp-content/object-cache.php
+wp-config.php
+
+# Keep plugins dir in git (for wp-cli installs at runtime)
+wp-content/plugins/.gitkeep
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+docker/nginx/logs/

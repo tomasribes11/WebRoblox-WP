@@ -1,0 +1,149 @@
+/* theme.css — Puerto de custom.css del proyecto React
+ * Bootstrap 5.3 dark mode via data-bs-theme="dark|light" en <html>.
+ */
+
+/* ─── Accent color variables ────────────────────────────────────────────────*/
+:root[data-bs-theme="dark"] {
+  --accent-primary:   #00ff88;
+  --accent-secondary: #00d4ff;
+  --accent-gradient:  linear-gradient(135deg, #00ff88, #00d4ff);
+  --bs-body-bg:       #1e1e2f;
+  --bs-body-color:    #ffffff;
+}
+
+:root[data-bs-theme="light"] {
+  --accent-primary:   #0066cc;
+  --accent-secondary: #004499;
+  --accent-gradient:  linear-gradient(135deg, #0066cc, #004499);
+}
+
+/* ─── Accent button ─────────────────────────────────────────────────────────*/
+.btn-accent {
+  background:  var(--accent-gradient);
+  color:       #000;
+  border:      none;
+  font-weight: 600;
+  transition:  transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-accent:hover {
+  transform:  translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+  color:      #000;
+}
+
+/* ─── Badge accent ──────────────────────────────────────────────────────────*/
+.bg-accent {
+  background: var(--accent-gradient) !important;
+  color:      #000 !important;
+}
+
+/* ─── Gradient text (logo, hero) ────────────────────────────────────────────*/
+.text-gradient-accent {
+  background:              var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip:         text;
+}
+
+/* ─── Hero section ──────────────────────────────────────────────────────────*/
+.hero-section {
+  background:    linear-gradient(180deg, rgba(0, 255, 136, 0.05) 0%, transparent 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+:root[data-bs-theme="light"] .hero-section {
+  background:    linear-gradient(180deg, rgba(0, 102, 204, 0.05) 0%, transparent 100%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* ─── Article cards ─────────────────────────────────────────────────────────*/
+.article-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.article-card:hover {
+  transform:  translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 255, 136, 0.12);
+}
+
+/* ─── Article content typography ────────────────────────────────────────────*/
+.article-content h2,
+.article-content h3 {
+  margin-top:    1.5rem;
+  margin-bottom: 0.75rem;
+  font-weight:   700;
+}
+
+.article-content ul {
+  padding-left: 1.5rem;
+}
+
+.article-content li {
+  margin-bottom: 0.4rem;
+  line-height:   1.7;
+}
+
+.article-content p {
+  line-height:   1.8;
+  margin-bottom: 1rem;
+}
+
+/* ─── Navbar backdrop ───────────────────────────────────────────────────────*/
+:root[data-bs-theme="dark"] .navbar {
+  background-color: rgba(26, 26, 46, 0.92) !important;
+  backdrop-filter:  blur(8px);
+  border-bottom:    1px solid rgba(255, 255, 255, 0.08);
+}
+
+:root[data-bs-theme="light"] .navbar {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter:  blur(8px);
+  border-bottom:    1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* ─── Paginación Bootstrap ──────────────────────────────────────────────────*/
+.page-numbers {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  padding:         0.375rem 0.75rem;
+  margin:          0 2px;
+  border-radius:   0.375rem;
+  text-decoration: none;
+  color:           var(--bs-body-color);
+  border:          1px solid var(--bs-border-color);
+  transition:      background 0.15s ease;
+}
+
+.page-numbers:hover,
+.page-numbers.current {
+  background: var(--accent-gradient);
+  color:      #000;
+  border-color: transparent;
+}
+
+.page-numbers.dots {
+  border: none;
+  background: transparent;
+}
+
+/* ─── Breadcrumb ─────────────────────────────────────────────────────────────*/
+.breadcrumb-item + .breadcrumb-item::before {
+  content: "›";
+}
+
+/* ─── Card image placeholder ────────────────────────────────────────────────*/
+.card-img-placeholder {
+  height:      180px;
+  background:  var(--accent-gradient);
+  display:     flex;
+  align-items: center;
+  justify-content: center;
+  font-size:   3rem;
+}
+
+/* ─── Body padding-top (navbar fixed) ───────────────────────────────────────*/
+body {
+  padding-top: 70px;
+}

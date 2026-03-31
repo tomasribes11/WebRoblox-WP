@@ -1,0 +1,84 @@
+services:
+
+  # ─── Nginx — Proxy reverso ────────────────────────────────────────────────
+  nginx:
+    image: nginx:1.25-alpine
+    ports:
+      - "8080:80"          # Puerto alternativo para coexistir con el proyecto Laravel
+    volumes:
+      - ./docker/nginx/nginx.dev.conf:/etc/nginx/conf.d/default.conf:ro
+      - wp_wordpress_data:/var/www/html:ro
+      - ./wp-content/themes:/var/www/html/wp-content/themes:ro
+      - wp_uploads:/var/www/html/wp-content/uploads:ro
+    depends_on:
+      - php-fpm
+    networks:
+      - webroblox_wp_net
+    restart: unless-stopped
+
+  # ─── PHP-FPM — WordPress runtime ─────────────────────────────────────────
+  php-fpm:
+    build:
+      context: ./docker/php
+    env_file:
+      - .env
+    volumes:
+      - wp_wordpress_data:/var/www/html
+      - ./wp-content/themes:/var/www/html/wp-content/themes
+      - wp_uploads:/var/www/html/wp-content/uploads
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - webroblox_wp_net
+    restart: unless-stopped
+
+  # ─── MySQL 8.0 ────────────────────────────────────────────────────────────
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3307:3306"        # Puerto alternativo para coexistir con el proyecto Laravel
+    env_file:
+      - .env
+    volumes:
+      - wp_mysql_data:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/custom.cnf:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost",
+             "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - webroblox_wp_net
+    restart: unless-stopped
+
+  # ─── WP-CLI — Setup one-shot (solo con `make setup` o `--profile setup`) ─
+  wp-cli:
+    image: wordpress:cli-php8.2
+    env_file:
+      - .env
+    volumes:
+      - wp_wordpress_data:/var/www/html
+      - ./wp-content/themes:/var/www/html/wp-content/themes
+      - wp_uploads:/var/www/html/wp-content/uploads
+      - ./scripts:/scripts:ro
+    depends_on:
+      mysql:
+        condition: service_healthy
+      php-fpm:
+        condition: service_started
+    networks:
+      - webroblox_wp_net
+    profiles:
+      - setup
+
+volumes:
+  wp_wordpress_data:
+  wp_mysql_data:
+  wp_uploads:
+
+networks:
+  webroblox_wp_net:
+    driver: bridge
