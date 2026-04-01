@@ -24,11 +24,11 @@ services:
       - .env
     environment:
       - WORDPRESS_CONFIG_EXTRA=require_once('/var/www/html/wp-config-filesystem.php');
-    user: "www-data:www-data"
     volumes:
       - wp_wordpress_data:/var/www/html
       - ./wp-content/themes:/var/www/html/wp-content/themes
       - wp_uploads:/var/www/html/wp-content/uploads
+      - wp_tmp:/var/www/html/wp-content/tmp
     depends_on:
       mysql:
         condition: service_healthy
@@ -83,6 +83,7 @@ volumes:
   wp_wordpress_data:
   wp_mysql_data:
   wp_uploads:
+  wp_tmp:
 
 networks:
   webroblox_wp_net:
