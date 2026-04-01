@@ -23,6 +23,7 @@ wp-content/plugins/.gitkeep
 .vscode/
 *.swp
 *.swo
+*.sql
 
 # Logs
 *.log
