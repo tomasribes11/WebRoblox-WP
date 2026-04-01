@@ -1,0 +1,154 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "title": "GREEN SCHEME",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#03B686",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#4056F8",
+          "name": "Secondary"
+        },
+        {
+          "slug": "primary-shade-one",
+          "color": "#50F6C9",
+          "name": "Primary Shade 1"
+        },
+        {
+          "slug": "primary-shade-2",
+          "color": "#023A26",
+          "name": "Primary Shade 2"
+        },
+        {
+          "slug": "secondary-shade-1",
+          "color": "#2B43FA",
+          "name": "Secodnary Shade 1"
+        },
+        {
+          "slug": "secondary-shade-2",
+          "color": "#04127A",
+          "name": "Secodnary Shade 2"
+        },
+        {
+          "slug": "light-color",
+          "color": "#FFFFFE",
+          "name": "Light Color"
+        },
+        {
+          "slug": "black-color",
+          "color": "#101010",
+          "name": "Black Color"
+        },
+        {
+          "slug": "dark-shade",
+          "color": "#01150E",
+          "name": "Dark Shade"
+        },
+
+        {
+          "slug": "heading-color",
+          "color": "#FFFFFD",
+          "name": "Heading Color"
+        },
+        {
+          "slug": "background",
+          "color": "#000705",
+          "name": "Background"
+        },
+        {
+          "slug": "background-alt",
+          "color": "#00281C",
+          "name": "Background Alt"
+        },
+        {
+          "slug": "foreground",
+          "color": "#F5FFFC",
+          "name": "Foreground"
+        },
+        {
+          "slug": "foreground-alt",
+          "color": "#E6F7F1",
+          "name": "Foreground Alternative"
+        },
+        {
+          "slug": "meta-color",
+          "color": "#A7B0AD",
+          "name": "Meta Color"
+        },
+        {
+          "slug": "border-color",
+          "color": "#23332D",
+          "name": "Border Color"
+        },
+        {
+          "slug": "sticky-bg-color",
+          "color": "#000000eb",
+          "name": "Sticky Background Color"
+        },
+        {
+          "color": "#ffffff00",
+          "name": "Transparent",
+          "slug": "transparent"
+        }
+      ],
+      "duotone": [
+        {
+          "colors": ["#00FF00", "#0A0A0A"],
+          "slug": "primary-dark",
+          "name": "Roblox Green Dark"
+        },
+        {
+          "colors": ["#1E90FF", "#00FF00"],
+          "slug": "secondary-primary",
+          "name": "Blue Green Gaming"
+        },
+        {
+          "colors": ["#00FF00", "#000000"],
+          "slug": "primary-dark-duo",
+          "name": "Green Dark Duo"
+        },
+        {
+          "colors": ["#000000", "#00FF00"],
+          "slug": "dark-primary",
+          "name": "Dark Green"
+        },
+        {
+          "colors": ["#00FF00", "#FFFFFF"],
+          "slug": "primary-light",
+          "name": "Green Light"
+        },
+        {
+          "colors": ["#FFFFFF", "#1E90FF"],
+          "slug": "light-secondary",
+          "name": "Light Blue"
+        },
+        {
+          "colors": ["#1E90FF", "#0A0A0A"],
+          "slug": "secondary-dark",
+          "name": "Blue Dark"
+        },
+        {
+          "colors": ["#0A0A0A", "#1E90FF"],
+          "slug": "dark-secondary",
+          "name": "Dark Blue"
+        },
+        {
+          "colors": ["#1E90FF", "#FFFFFF"],
+          "slug": "secondary-light",
+          "name": "Blue Light"
+        },
+        {
+          "colors": ["#FFFFFF", "#00FF00"],
+          "slug": "light-primary",
+          "name": "Light Green"
+        }
+      ]
+    }
+  }
+}
