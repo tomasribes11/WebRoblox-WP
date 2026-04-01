@@ -2,6 +2,12 @@
   "name": "Mundo Roblox WordPress",
   "description": "Sitio WordPress multiidioma sobre Roblox con Docker",
   "type": "wordpress",
+  "environment": "wsl-docker",
+  "terminal": {
+    "shell": "wsl",
+    "distribution": "Ubuntu",
+    "defaultDirectory": "/home/tomasribes11/projects/web-roblox-wp"
+  },
   "docker": {
     "enabled": true,
     "composeFile": "docker-compose.yml",
@@ -9,7 +15,9 @@
     "ports": {
       "nginx": 8080,
       "mysql": 3307
-    }
+    },
+    "wslIntegration": true,
+    "userPermissions": "www-data"
   },
   "development": {
     "primaryCommands": [
@@ -18,13 +26,21 @@
       "make down"
     ],
     "siteUrl": "http://localhost:8080",
-    "adminUrl": "http://localhost:8080/wp-admin"
+    "adminUrl": "http://localhost:8080/wp-admin",
+    "shellCommands": {
+      "phpShell": "docker compose exec php-fpm bash",
+      "dbShell": "make db-shell",
+      "wpShell": "docker compose run --rm wp-cli bash",
+      "logs": "docker compose logs -f"
+    }
   },
   "workspace": {
     "directories": {
       "theme": "wp-content/themes/webroblox",
       "docker": "docker",
-      "scripts": "scripts"
+      "scripts": "scripts",
+      "wslRoot": "/home/tomasribes11/projects/web-roblox-wp",
+      "windowsRoot": "\\\\wsl.localhost\\Ubuntu\\home\\tomasribes11\\projects\\web-roblox-wp"
     },
     "fileTypes": {
       "php": ["*.php"],
@@ -37,6 +53,18 @@
     "multiLanguage": true,
     "languages": ["es", "en", "fr"],
     "plugins": ["polylang"],
-    "theme": "webroblox"
+    "theme": "webroblox",
+    "aiIntegration": {
+      "containerAccess": true,
+      "fileOperations": true,
+      "commandExecution": true,
+      "safeCommands": ["make", "docker compose", "git", "ls", "cat", "grep"]
+    }
+  },
+  "permissions": {
+    "dockerUser": "tomasribes11",
+    "containerUser": "www-data",
+    "volumePermissions": "rw",
+    "wslFilePermissions": "755"
   }
 }
