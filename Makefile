@@ -2,7 +2,7 @@
 ## Acceso: http://localhost:8080  |  Admin: http://localhost:8080/wp-admin
 
 .PHONY: help setup up down logs logs-nginx logs-php wp-shell wp-cmd php-shell \
-        db-shell up-prod clean reset
+        db-shell db-backup db-restore db-list db-verify db-clean up-prod clean reset
 
 help: ## Muestra esta ayuda
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
@@ -60,6 +60,33 @@ db-shell: ## Abrir MySQL shell
 		-u$$(grep MYSQL_USER .env | cut -d= -f2) \
 		-p$$(grep MYSQL_PASSWORD .env | cut -d= -f2) \
 		$$(grep MYSQL_DATABASE .env | cut -d= -f2)
+
+db-backup: ## Crear backup de la base de datos
+	@./scripts/backup-db.sh backup
+
+db-restore: ## Restaurar base de datos desde backup (usa: make db-restore BACKUP=archivo.sql.gz)
+	@if [ -z "$(BACKUP)" ]; then \
+		echo "Especifica el archivo de backup: make db-restore BACKUP=archivo.sql.gz"; \
+		echo "Backups disponibles:"; \
+		./scripts/backup-db.sh list; \
+		exit 1; \
+	fi
+	@./scripts/backup-db.sh restore $(BACKUP)
+
+db-list: ## Listar todos los backups disponibles
+	@./scripts/backup-db.sh list
+
+db-verify: ## Verificar integridad de un backup (usa: make db-verify BACKUP=archivo.sql.gz)
+	@if [ -z "$(BACKUP)" ]; then \
+		echo "Especifica el archivo de backup: make db-verify BACKUP=archivo.sql.gz"; \
+		echo "Backups disponibles:"; \
+		./scripts/backup-db.sh list; \
+		exit 1; \
+	fi
+	@./scripts/backup-db.sh verify $(BACKUP)
+
+db-clean: ## Limpiar backups antiguos (usa: make db-clean KEEP=5 para mantener 5 backups)
+	@./scripts/backup-db.sh clean $(KEEP)
 
 # ─── PRODUCCIÓN ──────────────────────────────────────────────────────────────
 
