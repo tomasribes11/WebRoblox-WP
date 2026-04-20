@@ -22,6 +22,20 @@ defined('ESHF_COMPATIBILITY_TMPL') or define('ESHF_COMPATIBILITY_TMPL', 'morenew
  * @package MoreNews
  */
 
+/**
+ * Enqueue custom finance styles
+ */
+function morenews_finance_styles() {
+    wp_enqueue_style(
+        'morenews-finance-style',
+        get_template_directory_uri() . '/custom-finance.css',
+        array(),
+        '1.0.0',
+        'all'
+    );
+}
+add_action('wp_enqueue_scripts', 'morenews_finance_styles');
+
 if (!function_exists('morenews_setup')) :
   /**
    * Sets up theme defaults and registers support for various WordPress features.

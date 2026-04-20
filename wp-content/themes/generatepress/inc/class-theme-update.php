@@ -61,6 +61,11 @@ class GeneratePress_Theme_Update {
 
 			$existing_settings = get_option( 'generate_settings', array() );
 
+			// Ensure existing_settings is an array
+			if ( ! is_array( $existing_settings ) ) {
+				$existing_settings = array();
+			}
+
 			// Can't count this as a user-set option since a previous migration script set it.
 			if ( isset( $existing_settings['combine_css'] ) ) {
 				unset( $existing_settings['combine_css'] );
@@ -140,6 +145,11 @@ class GeneratePress_Theme_Update {
 
 		$settings = get_option( 'generate_settings', array() );
 
+		// Ensure settings is an array
+		if ( ! is_array( $settings ) ) {
+			$settings = array();
+		}
+
 		if ( ! isset( $settings['font_body'] ) ) {
 			return;
 		}
@@ -177,6 +187,11 @@ class GeneratePress_Theme_Update {
 
 		$settings = get_option( 'generate_settings', array() );
 
+		// Ensure settings is an array
+		if ( ! is_array( $settings ) ) {
+			$settings = array();
+		}
+
 		if ( ! isset( $settings['logo'] ) ) {
 			return;
 		}
@@ -208,6 +223,11 @@ class GeneratePress_Theme_Update {
 		$settings = get_option( 'generate_settings', array() );
 		$update_options = false;
 
+		// Ensure settings is an array
+		if ( ! is_array( $settings ) ) {
+			$settings = array();
+		}
+
 		if ( ! isset( $settings['combine_css'] ) ) {
 			$settings['combine_css'] = false;
 			$update_options = true;
@@ -226,6 +246,11 @@ class GeneratePress_Theme_Update {
 	public static function v_3_0_0() {
 		$settings = get_option( 'generate_settings', array() );
 		$update_options = false;
+
+		// Ensure settings is an array
+		if ( ! is_array( $settings ) ) {
+			$settings = array();
+		}
 
 		$old_defaults = array(
 			'icons' => 'font',
@@ -350,6 +375,11 @@ class GeneratePress_Theme_Update {
 	public static function v_3_1_0() {
 		$settings = get_option( 'generate_settings', array() );
 		$update_options = false;
+
+		// Ensure settings is an array
+		if ( ! is_array( $settings ) ) {
+			$settings = array();
+		}
 
 		$old_defaults = array(
 			'underline_links' => 'never',
