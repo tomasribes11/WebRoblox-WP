@@ -1,0 +1,56 @@
+# WordPress .htaccess - FORZAR ACCESO PÚBLICO COMPLETO
+# Este archivo asegura que no haya bloqueos de acceso
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress
+
+# FORZAR ACCESO PÚBLICO - ELIMINAR CUALQUIER BLOQUEO
+<Files "*">
+    Order allow,deny
+    Allow from all
+    Require all granted
+    Satisfy any
+</Files>
+
+# PERMITIR ACCESO A TODOS LOS DIRECTORIOS
+<Directory "*">
+    Order allow,deny
+    Allow from all
+    Require all granted
+    Satisfy any
+</Directory>
+
+# ELIMINAR RESTRICCIONES DE WORDPRESS
+<Files "wp-login.php">
+    Order allow,deny
+    Allow from all
+    Require all granted
+</Files>
+
+<Files "wp-admin/*">
+    Order allow,deny
+    Allow from all
+    Require all granted
+</Files>
+
+# DESHABILITAR CUALQUIER AUTENTICACIÓN FORZADA
+<IfModule mod_auth_basic.c>
+    AuthType off
+    AuthBasicAuthoritative off
+</IfModule>
+
+# FORZAR CABECERAS DE ACCESO PÚBLICO
+<IfModule mod_headers.c>
+    Header always set Cache-Control "public, max-age=3600"
+    Header always set Pragma "public"
+    Header always set X-Content-Type-Options "nosniff"
+</IfModule>
