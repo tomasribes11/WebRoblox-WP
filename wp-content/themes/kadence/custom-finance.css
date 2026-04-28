@@ -1,0 +1,402 @@
+/* Custom CSS for Finanzas Personales - Kadence Theme */
+
+/* Professional Finance Color Scheme */
+:root {
+    --finance-primary: #1e3a8a;
+    --finance-secondary: #3b82f6;
+    --finance-accent: #10b981;
+    --finance-warning: #f59e0b;
+    --finance-danger: #ef4444;
+    --finance-dark: #1f2937;
+    --finance-light: #f9fafb;
+}
+
+/* PROTECT IMAGES FROM DARK MODE - AGGRESSIVE APPROACH */
+
+/* Global protection for ALL images regardless of dark mode state */
+img, picture, svg, video, iframe {
+    filter: none !important;
+    -webkit-filter: none !important;
+}
+
+/* Force all images to maintain original colors */
+img {
+    filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='reset'><feColorMatrix type='matrix' values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0'/></filter></svg>#reset") !important;
+    -webkit-filter: none !important;
+    filter: none !important;
+    filter: brightness(100%) contrast(100%) saturate(100%) grayscale(0%) invert(0%) !important;
+}
+
+/* WordPress specific image protection */
+.wp-block-image img,
+.wp-block-gallery img,
+.wp-block-media-text img,
+.wp-block-cover img,
+.attachment-thumbnail,
+.attachment-medium,
+.attachment-large,
+.attachment-full,
+.custom-logo,
+.site-logo,
+.post-thumbnail,
+.featured-image,
+img[class*="wp-image-"],
+img[class*="attachment-"],
+img[class*="size-"] {
+    filter: none !important;
+    -webkit-filter: none !important;
+    filter: brightness(1) contrast(1) saturate(1) grayscale(0) invert(0) !important;
+}
+
+/* Override any JavaScript-applied filters */
+img[style*="filter"],
+picture[style*="filter"],
+figure[style*="filter"],
+.wp-block-image[style*="filter"],
+.wp-block-gallery[style*="filter"] {
+    filter: none !important;
+    -webkit-filter: none !important;
+}
+
+/* Background image protection */
+[style*="background-image"] {
+    filter: none !important;
+    -webkit-filter: none !important;
+}
+
+/* Logo and branding protection */
+.custom-logo-link img,
+.site-logo img,
+.branding img,
+.logo img,
+.header img,
+.footer img,
+.sidebar img,
+.widget img {
+    filter: none !important;
+    -webkit-filter: none !important;
+}
+
+/* Content area images */
+.entry-content img,
+.post-content img,
+.page-content img,
+.site-content img {
+    filter: none !important;
+    -webkit-filter: none !important;
+}
+
+/* Dark mode specific protection (if plugin adds classes) */
+body.dark-mode img,
+body.dark-mode picture,
+body.dark-mode svg,
+body.dark-mode video,
+.dark-mode img,
+.dark-mode picture,
+.dark-mode svg,
+.dark-mode video {
+    filter: none !important;
+    -webkit-filter: none !important;
+    filter: brightness(100%) contrast(100%) saturate(100%) grayscale(0%) invert(0%) !important;
+}
+
+/* Force override any possible filter combinations */
+* {
+    filter: none !important;
+    -webkit-filter: none !important;
+}
+
+/* Then restore specific filters only for non-image elements */
+*:not(img):not(picture):not(svg):not(video):not(iframe):not([style*="background-image"]) {
+    filter: initial !important;
+    -webkit-filter: initial !important;
+}
+
+
+/* Custom Branding Styles */
+.custom-branding-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.custom-branding-link {
+    display: block;
+    text-decoration: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.custom-branding-link:hover {
+    transform: scale(1.02);
+    opacity: 0.9;
+}
+
+.branding-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.custom-logo {
+    display: block;
+    width: 50px;
+    height: 50px;
+    transition: all 0.3s ease;
+}
+
+.site-title-text {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--finance-dark);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/* Responsive branding styles */
+@media (max-width: 768px) {
+    .custom-logo {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .site-title-text {
+        font-size: 1.2rem;
+    }
+    
+    .branding-content {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .custom-logo {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .site-title-text {
+        font-size: 1.1rem;
+    }
+    
+    .branding-content {
+        gap: 8px;
+    }
+}
+
+/* Ensure logo is positioned in top-left of header */
+.site-header-item[data-section="title_tagline"] {
+    order: -1;
+    flex: 0 0 auto;
+}
+
+/* Typography Improvements for Financial Content */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.7;
+    color: var(--finance-dark);
+}
+
+.entry-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* Headings for Financial Articles */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--finance-primary);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+
+/* Professional Links */
+a {
+    color: var(--finance-secondary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    color: var(--finance-primary);
+    text-decoration: underline;
+}
+
+/* Financial Tables Styling */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 2rem 0;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+    background-color: var(--finance-light);
+    font-weight: 600;
+    color: var(--finance-primary);
+}
+
+/* Comparison Boxes */
+.comparison-box {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    margin: 2rem 0;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Call to Action Buttons */
+.cta-button {
+    background: var(--finance-secondary);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background: var(--finance-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Warning and Alert Boxes */
+.warning-box {
+    background: #fef3c7;
+    border-left: 4px solid var(--finance-warning);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 4px;
+}
+
+.danger-box {
+    background: #fee2e2;
+    border-left: 4px solid var(--finance-danger);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 4px;
+}
+
+.success-box {
+    background: #d1fae5;
+    border-left: 4px solid var(--finance-accent);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 4px;
+}
+
+/* Financial Calculator Styling */
+.calculator-box {
+    background: var(--finance-light);
+    border: 2px solid var(--finance-secondary);
+    padding: 2rem;
+    border-radius: 12px;
+    margin: 2rem 0;
+}
+
+.calculator-box input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+/* Navigation Improvements */
+.main-navigation {
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.main-navigation a {
+    color: var(--finance-dark);
+    font-weight: 500;
+}
+
+.main-navigation a:hover {
+    color: var(--finance-secondary);
+}
+
+/* Sidebar Widgets */
+.widget {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.widget-title {
+    color: var(--finance-primary);
+    font-weight: 600;
+    border-bottom: 2px solid var(--finance-secondary);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Category Tags */
+.category-tag {
+    background: var(--finance-secondary);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+/* Breadcrumb Styling */
+.breadcrumb {
+    background: var(--finance-light);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.breadcrumb a {
+    color: var(--finance-secondary);
+}
+
+/* Footer Improvements */
+.site-footer {
+    background: var(--finance-dark);
+    color: white;
+    padding: 3rem 0 2rem;
+}
+
+.site-footer a {
+    color: #9ca3af;
+}
+
+.site-footer a:hover {
+    color: white;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.5rem; }
+    
+    .entry-content {
+        font-size: 1rem;
+    }
+    
+    .comparison-box {
+        padding: 1.5rem;
+    }
+}

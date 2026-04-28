@@ -29,3 +29,18 @@ require get_template_directory() . '/inc/functions.php';
 
 // Initialize the theme.
 call_user_func( 'Kadence\kadence' );
+
+/**
+ * Enqueue custom finance styles
+ */
+function kadence_finance_styles() {
+    wp_enqueue_style( 
+        'kadence-finance-style', 
+        get_template_directory_uri() . '/custom-finance.css', 
+        array(), 
+        '1.0.0' 
+    );
+}
+add_action( 'wp_enqueue_scripts', 'kadence_finance_styles' );
+
+
